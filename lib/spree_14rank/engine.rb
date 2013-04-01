@@ -12,10 +12,21 @@ module Spree14rank
     end
 
     def self.activate
-      require 'decorators'
-      Decorators.register! File.expand_path('../../../', __FILE__)
+      # require 'decorators'
+      # Decorators.register! File.expand_path('../../../', __FILE__)
+
+      Dir.glob(File.join(File.dirname(__FILE__), '../../app/**/*_decorator*.rb')) do |c|
+        Rails.configuration.cache_classes ? require(c) : load(c)
+      end
+      # Spree::Ability.register_ability(Spree::ReviewsAbility)
     end
 
     config.to_prepare &method(:activate).to_proc
+
+    # use rspec for tests
+    config.generators do |g|
+      g.test_framework :rspec
+    end
+
   end
 end
