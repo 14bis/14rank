@@ -1,0 +1,6 @@
+<% for review in @product.reviews %>
+      <%= render :partial => 'spree/shared/review', :locals => {:review => review} %>
+<% end %>
+
+<%= link_to t('write_your_own_review'), new_product_review_path(@product), :class => "button",
+                :rel => "nofollow,noindex" %> 

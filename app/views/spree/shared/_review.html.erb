@@ -1,0 +1,13 @@
+<div class="review" itemprop="reviews" itemscope itemtype="http://schema.org/Review">
+
+  <span class="attribution">
+    <%= t('submitted_on') %> 
+    <strong itemprop="datePublished">
+      <%= l review.created_at.to_date %>
+    </strong>
+  </span>
+  <span itemprop="author"><%= review.user.email %></span>
+  <div itemprop="rating">
+    <%= review.rating %>
+  </div>
+</div>
