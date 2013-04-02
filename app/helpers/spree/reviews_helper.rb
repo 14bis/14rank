@@ -1,9 +1,5 @@
 module Spree::ReviewsHelper
 
-  def select_rate(select_id, selected, disabled)
-    select_tag(select_id, options_for_select(0..5, selected), :disabled => disabled)
-  end
-
   def show_rate(value)
     if value.nil? or value == 0
       content_tag("div", t(:not_rated), :class => 'rateit', :'data-rateit-readonly' => "true")

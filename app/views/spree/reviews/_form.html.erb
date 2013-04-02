@@ -7,11 +7,20 @@
 
 <div data-hook="product_review_form_fields">
 
-  <div class="alpha four columns omega">
+  <div class="field">
     <%= f.label :rating %>
     <%= f.select :rating, 0..5, :class => "select fullwidth"  %>
+    <div class="rateit" data-rateit-backingfld="#product_review_rating" data-rateit-resetable="false"></div>
   </div>
 
-  <div class="rateit" data-rateit-backingfld="#product_review_rating"></div>
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title, :class => 'fullwidth title' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :comment %>
+    <%= f.text_area :comment, {:rows => "5", :class => 'fullwidth'} %>
+  </div>
 
 </div>

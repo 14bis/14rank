@@ -8,6 +8,7 @@ class Spree::ReviewsController < Spree::StoreController
   def create
     @review = @product.reviews.build
     @review.user = spree_current_user
+    @review.location = I18n.locale
     @review.attributes = params[:product_review]
     
     if @review.save

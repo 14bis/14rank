@@ -3,11 +3,17 @@
   <span class="attribution">
     <%= t('submitted_on') %> 
     <strong itemprop="datePublished">
-      <%= l review.created_at.to_date %>
+      <%= l review.created_at.localtime, :format => :short %>
     </strong>
   </span>
   <span itemprop="author"><%= review.user.email %></span>
   <div itemprop="rating">
     <%= show_rate review.rating %>
+  </div>
+  <div itemprop="title">
+    <%= review.title %>
+  </div>
+  <div itemprop="comment">
+    <%= review.comment %>
   </div>
 </div>
