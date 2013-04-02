@@ -1,8 +1,17 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag 'store/rateit' %>
+  <%= javascript_include_tag "store/jquery.rateit.min.js" %>
+<% end %>
+
+<%= render "spree/shared/error_messages", :target => @review %>
+
 <div data-hook="product_review_form_fields">
 
-  <div class="alpha eight columns">
+  <div class="alpha four columns omega">
     <%= f.label :rating %>
-    <%= f.select :rating, 1...6, :class => "select fullwidth" %>
+    <%= f.select :rating, 0..5, :class => "select fullwidth"  %>
   </div>
+
+  <div class="rateit" data-rateit-backingfld="#product_review_rating"></div>
 
 </div>

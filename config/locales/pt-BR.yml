@@ -1,0 +1,5 @@
+pt-BR:
+  rate_this_product: "Avalie esse Produto"
+  rating: "Avaliar o produto %{name}"
+  review_successfully_submitted: "Avaliação submetida com sucesso"
+  send_review: "Enviar Avaliação"

@@ -1,11 +1,11 @@
-<%= content_tag :h2, t(:leave_us_a_review_for, :name => @product.name), :class => 'new-review-title' %>
+<%= content_tag :h2, t(:rating, :name => @review.product.name), :class => 'new-review-title' %>
 
 <%= form_for @review, :url => product_reviews_path do |f| %>
   <fieldset class="no-border-top">
     <%= render :partial => 'form', :locals => { :f => f } %>
     
     <div class="form-buttons filter-actions actions" data-hook="buttons">
-      <%= button t(:create), 'icon-ok' %>
+      <%= button t(:send_review), 'icon-ok' %>
     </div>
   </fieldset>
 <% end %>
