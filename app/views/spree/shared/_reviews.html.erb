@@ -1,6 +1,20 @@
-<% for review in @product.reviews %>
-      <%= render :partial => 'spree/shared/review', :locals => {:review => review} %>
+<% content_for :head do %>
+  <%= stylesheet_link_tag 'store/rateit' %>
+  <%= javascript_include_tag "store/jquery.rateit.min.js" %>
 <% end %>
 
-<%= link_to t('rate_this_product'), new_product_review_path(@product), :class => "button",
-                :rel => "nofollow,noindex" %>
+<div class="clear" />
+
+<div class="row columns six alpha"  >
+  <div itemprop="avg_rating">
+    <%= show_rate @product.avg_rating %>
+  </div>
+
+  <% for review in @product.reviews %>
+        <%= render :partial => 'spree/shared/review', :locals => {:review => review} %>
+  <% end %>
+
+  <%= link_to t('rate_this_product'), new_product_review_path(@product), :class => "button",
+    :rel => "nofollow,noindex" %>
+
+</div>
