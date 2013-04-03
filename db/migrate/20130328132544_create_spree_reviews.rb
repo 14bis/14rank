@@ -11,5 +11,8 @@ class CreateSpreeReviews < ActiveRecord::Migration
       t.integer :product_id
       t.integer :provider_id
     end
+    add_index :spree_reviews, :provider_id
+    add_index :spree_reviews, :product_id
+    add_index :spree_reviews, :user_id
   end
 end

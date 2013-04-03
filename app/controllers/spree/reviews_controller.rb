@@ -1,5 +1,5 @@
 class Spree::ReviewsController < Spree::StoreController
-  before_filter :load_data
+  before_filter :load_data, :only => [:new, :create]
 
   def new
     @review = @product.reviews.build
@@ -13,10 +13,22 @@ class Spree::ReviewsController < Spree::StoreController
     
     if @review.save
       flash[:notice] = t('review_successfully_submitted')
-      redirect_to product_path(@product)
+      redirect_to @product
     else
       render :action => "new"
     end
+  end
+
+  def upvote
+    @review = Spree::Review.find(params[:id])
+    @review.liked_by spree_current_user
+    redirect_to @review.product
+  end
+
+  def downvote
+    @review = Spree::Review.find(params[:id])
+    @review.disliked_by spree_current_user
+    redirect_to @review.product
   end
 
   def load_data
