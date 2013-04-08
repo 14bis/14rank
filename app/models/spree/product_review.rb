@@ -1,6 +1,7 @@
 class Spree::ProductReview < Spree::Review
   belongs_to :product
   validates :product,  :presence => true
+  validates :user_id, :uniqueness => { :scope => :product_id }
 
   after_save :recalculate_product_rating
   after_destroy :recalculate_product_rating

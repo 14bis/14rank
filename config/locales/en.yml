@@ -1,4 +1,15 @@
 en:
+  activerecord:
+    errors:
+      models:
+        spree/product_review:
+          attributes:
+            user_id:
+              taken: "already voted on this product"
+        # spree/review_feedback:
+        #   attributes:
+        #     user_id:
+        #       taken: "already voted on this review"
   rate_this_product: "Rate this Product"
   rating: "Rating the product %{name}"
   review_successfully_submitted: "Review successfully submitted"
