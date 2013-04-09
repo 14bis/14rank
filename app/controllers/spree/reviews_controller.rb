@@ -1,12 +1,15 @@
 class Spree::ReviewsController < Spree::StoreController
-  before_filter :load_data, :only => [:new, :create]
+  load_resource :product, :find_by => :permalink, :class => 'Spree::Product'
+  load_and_authorize_resource :review, :class => 'Spree::ProductReview', :through => :product
+
+  def current_ability
+    @current_ability ||= Spree::ReviewsAbility.new(spree_current_user)
+  end
 
   def new
-    @review = @product.reviews.build
   end
 
   def create
-    @review = @product.reviews.build
     @review.user = spree_current_user
     @review.location = I18n.locale
     @review.attributes = params[:product_review]
@@ -20,18 +23,13 @@ class Spree::ReviewsController < Spree::StoreController
   end
 
   def upvote
-    @review = Spree::Review.find(params[:id])
     @review.liked_by spree_current_user
     redirect_to @review.product
   end
 
   def downvote
-    @review = Spree::Review.find(params[:id])
     @review.disliked_by spree_current_user
     redirect_to @review.product
   end
 
-  def load_data
-    @product = Spree::Product.find_by_permalink(params[:product_id])
-  end
 end
