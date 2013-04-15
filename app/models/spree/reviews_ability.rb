@@ -8,7 +8,7 @@ class Spree::ReviewsAbility
 
     if user.respond_to?(:has_spree_role?) && user.has_spree_role?('user')
       can [:create, :update, :destroy], Spree::ProductReview, :user_id => user.id
-      can [:create, :update] , Spree::ReviewFeedback, :user_id => { :user_id => user.id }
+      can [:upvote, :downvote] , Spree::ProductReview
     end
 
   end

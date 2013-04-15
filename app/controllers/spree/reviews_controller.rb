@@ -1,6 +1,7 @@
 class Spree::ReviewsController < Spree::StoreController
   load_resource :product, :find_by => :permalink, :class => 'Spree::Product'
-  load_and_authorize_resource :review, :class => 'Spree::ProductReview', :through => :product
+  load_resource :provider
+  load_and_authorize_resource :review, :class => 'Spree::ProductReview', :through => [:product, :provider]
 
   def current_ability
     @current_ability ||= Spree::ReviewsAbility.new(spree_current_user)
@@ -16,7 +17,7 @@ class Spree::ReviewsController < Spree::StoreController
     
     if @review.save
       flash[:notice] = t('review_successfully_submitted')
-      redirect_to @product
+      redirect_to @review.parent
     else
       render :action => "new"
     end
@@ -24,12 +25,12 @@ class Spree::ReviewsController < Spree::StoreController
 
   def upvote
     @review.liked_by spree_current_user
-    redirect_to @review.product
+    redirect_to @review.parent
   end
 
   def downvote
     @review.disliked_by spree_current_user
-    redirect_to @review.product
+    redirect_to @review.parent
   end
 
 end

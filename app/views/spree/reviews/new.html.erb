@@ -1,4 +1,4 @@
-<%= content_tag :h2, t(:rating, :name => @review.product.name), :class => 'new-review-title' %>
+<%= content_tag :h2, t(:rating, :name => @review.parent.name), :class => 'new-review-title' %>
 
 <%= form_for @review, :url => product_reviews_path do |f| %>
   <fieldset class="no-border-top">
@@ -7,7 +7,7 @@
     <div class="form-buttons filter-actions actions" data-hook="buttons">
       <%= button t(:send_review), 'icon-ok' %>
       <span class="or"><%= t(:or) %></span>
-      <%= link_to_with_icon 'icon-remove', t('actions.cancel'), @review.product, :class => 'button' %>
+      <%= link_to_with_icon 'icon-remove', t('actions.cancel'), @review.parent, :class => 'button' %>
     </div>
   </fieldset>
 <% end %>
