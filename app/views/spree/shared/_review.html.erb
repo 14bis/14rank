@@ -17,8 +17,8 @@
     <%= review.comment %>
   </div>
 
-  <%= link_to "Upvote", like_product_review_path(review.product, review), method: :put %>
+  <%= link_to "Upvote", like_review_path(review), method: :put %>
   <%= "#{review.liked_count} x #{review.disliked_count}"%>
-  <%= link_to "Downvote", dislike_product_review_path(review.product, review), method: :put %>
+  <%= link_to "Downvote", dislike_review_path(review), method: :put %>
 
 </div>

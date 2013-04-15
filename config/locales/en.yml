@@ -11,6 +11,7 @@ en:
         #     user_id:
         #       taken: "already voted on this review"
   rate_this_product: "Rate this Product"
-  rating: "Rating the product %{name}"
+  rate_this_provider: "Avalie esse Fornecedor"
+  rating: "Rating the %{parent} %{name}"
   review_successfully_submitted: "Review successfully submitted"
   send_review: "Send Review"

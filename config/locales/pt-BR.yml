@@ -11,6 +11,7 @@ pt-BR:
         #     user_id:
         #       taken: "já votou nessa avaliação"
   rate_this_product: "Avalie esse Produto"
-  rating: "Avaliar o produto %{name}"
+  rate_this_provider: "Avalie esse Fornecedor"
+  rating: "Avaliar %{parent} %{name}"
   review_successfully_submitted: "Avaliação submetida com sucesso"
   send_review: "Enviar Avaliação"

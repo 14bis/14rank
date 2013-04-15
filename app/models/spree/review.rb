@@ -16,6 +16,7 @@ class Spree::Review < ActiveRecord::Base
     review_feedback.user = user
     review_feedback.rating = 1
     review_feedback.save
+    return review_feedback
   end
 
   def disliked_by user
@@ -23,6 +24,7 @@ class Spree::Review < ActiveRecord::Base
     review_feedback.user = user
     review_feedback.rating = -1
     review_feedback.save
+    return review_feedback
   end
 
   def liked_count
@@ -35,6 +37,20 @@ class Spree::Review < ActiveRecord::Base
 
   def parent
     product.nil? ? provider : product
+  end
+
+  after_save :recalculate_parent_rating
+  after_destroy :recalculate_parent_rating
+
+  def recalculate_parent_rating
+    reviews_count = parent.reviews.reload.count
+
+    if reviews_count > 0
+      parent.avg_rating = parent.reviews.sum(:rating).to_f / reviews_count
+      parent.save
+    else
+      parent.update_attribute(:avg_rating, 0)
+    end
   end
 
 end

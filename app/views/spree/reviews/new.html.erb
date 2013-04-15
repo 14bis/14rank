@@ -1,6 +1,6 @@
-<%= content_tag :h2, t(:rating, :name => @review.parent.name), :class => 'new-review-title' %>
+<%= content_tag :h2, t(:rating, :parent => @review.parent_model_name.human, :name => @review.parent.name), :class => 'new-review-title' %>
 
-<%= form_for @review, :url => product_reviews_path do |f| %>
+<%= form_for @review, :url => { :action => "create" } do |f| %>
   <fieldset class="no-border-top">
     <%= render :partial => 'form', :locals => { :f => f } %>
     

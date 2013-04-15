@@ -3,18 +3,8 @@ class Spree::ProductReview < Spree::Review
   validates :product,  :presence => true
   validates :user_id, :uniqueness => { :scope => :product_id }
 
-  after_save :recalculate_product_rating
-  after_destroy :recalculate_product_rating
-
-  def recalculate_product_rating
-    reviews_count = product.reviews.reload.count
-
-    if reviews_count > 0
-      product.avg_rating = product.reviews.sum(:rating).to_f / reviews_count
-      product.save
-    else
-      product.update_attribute(:avg_rating, 0)
-    end
+  def parent_model_name
+    Spree::Product.model_name
   end
 
 end

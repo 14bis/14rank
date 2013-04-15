@@ -1,7 +1,8 @@
 class Spree::ReviewsController < Spree::StoreController
-  load_resource :product, :find_by => :permalink, :class => 'Spree::Product'
-  load_resource :provider
-  load_and_authorize_resource :review, :class => 'Spree::ProductReview', :through => [:product, :provider]
+  load_resource :product, :find_by => :permalink, :class => 'Spree::Product', :except => [:upvote, :downvote]
+  load_resource :provider, :except => [:upvote, :downvote]
+  load_and_authorize_resource :review, :class => 'Spree::Review', :through => [:product, :provider], :except => [:upvote, :downvote]
+  load_and_authorize_resource :review, :class => 'Spree::Review', :only => [:upvote, :downvote]
 
   def current_ability
     @current_ability ||= Spree::ReviewsAbility.new(spree_current_user)
@@ -13,7 +14,7 @@ class Spree::ReviewsController < Spree::StoreController
   def create
     @review.user = spree_current_user
     @review.location = I18n.locale
-    @review.attributes = params[:product_review]
+    @review.attributes = params.has_key?(:product_review) ? params[:product_review] : params[:provider_review]
     
     if @review.save
       flash[:notice] = t('review_successfully_submitted')
@@ -24,12 +25,12 @@ class Spree::ReviewsController < Spree::StoreController
   end
 
   def upvote
-    @review.liked_by spree_current_user
+    @review_feedback = @review.liked_by spree_current_user
     redirect_to @review.parent
   end
 
   def downvote
-    @review.disliked_by spree_current_user
+    @review_feedback = @review.disliked_by spree_current_user
     redirect_to @review.parent
   end
 
