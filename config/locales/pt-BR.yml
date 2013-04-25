@@ -1,5 +1,10 @@
 pt-BR:
   activerecord:
+    attributes:
+      spree/review:
+        comment: "Comentário"
+        rating: "Pontuação"
+        title: "Título"
     errors:
       models:
         spree/product_review:
@@ -10,8 +15,11 @@ pt-BR:
         #   attributes:
         #     user_id:
         #       taken: "já votou nessa avaliação"
+  downvote: "Não foi útil"
+  not_rated: ""
   rate_this_product: "Avalie esse Produto"
   rate_this_provider: "Avalie esse Fornecedor"
   rating: "Avaliar %{parent} %{name}"
   review_successfully_submitted: "Avaliação submetida com sucesso"
   send_review: "Enviar Avaliação"
+  upvote: "Útil"

@@ -1,5 +1,10 @@
 en:
   activerecord:
+    attributes:
+      spree/review:
+        comment: "Comment"
+        rating: "Rating"
+        title: "Title"
     errors:
       models:
         spree/product_review:
@@ -10,8 +15,11 @@ en:
         #   attributes:
         #     user_id:
         #       taken: "already voted on this review"
+  downvote: "Thumbs down"
+  not_rated: ""
   rate_this_product: "Rate this Product"
   rate_this_provider: "Avalie esse Fornecedor"
   rating: "Rating the %{parent} %{name}"
   review_successfully_submitted: "Review successfully submitted"
   send_review: "Send Review"
+  upvote: "Thumbs up"
