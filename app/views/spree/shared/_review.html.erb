@@ -1,7 +1,7 @@
 <div class="review" itemprop="reviews" itemscope itemtype="http://schema.org/Review">
 
   <span class="attribution">
-    <%= t('submitted_on') %> 
+    <%= Spree.t('submitted_on') %> 
     <strong itemprop="datePublished">
       <%= l review.created_at.localtime, :format => :short %>
     </strong>
@@ -17,8 +17,8 @@
     <%= review.comment %>
   </div>
 
-  <%= link_to t(:upvote), like_review_path(review), method: :put %>
+  <%= link_to Spree.t(:upvote), like_review_path(review), method: :put %>
   <%= "#{review.liked_count} x #{review.disliked_count}"%>
-  <%= link_to t(:downvote), dislike_review_path(review), method: :put %>
+  <%= link_to Spree.t(:downvote), dislike_review_path(review), method: :put %>
 
 </div>

@@ -1,13 +1,13 @@
-<%= content_tag :h2, t(:rating, :parent => @review.parent_model_name.human, :name => @review.parent.name), :class => 'new-review-title' %>
+<%= content_tag :h2, Spree.t(:rating, :parent => @review.parent_model_name.human, :name => @review.parent.name), :class => 'new-review-title' %>
 
 <%= form_for @review, :url => { :action => "create" } do |f| %>
   <fieldset class="no-border-top">
     <%= render :partial => 'form', :locals => { :f => f } %>
     
     <div class="form-buttons filter-actions actions" data-hook="buttons">
-      <%= button t(:send_review), 'icon-ok' %>
-      <span class="or"><%= t(:or) %></span>
-      <%= link_to_with_icon 'icon-remove', t('actions.cancel'), @review.parent, :class => 'button' %>
+      <%= button Spree.t(:send_review), 'icon-ok' %>
+      <span class="or"><%= Spree.t(:or) %></span>
+      <%= link_to_with_icon 'icon-remove', Spree.t('actions.cancel'), @review.parent, :class => 'button' %>
     </div>
   </fieldset>
 <% end %>

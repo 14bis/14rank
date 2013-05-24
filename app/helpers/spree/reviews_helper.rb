@@ -2,7 +2,7 @@ module Spree::ReviewsHelper
 
   def show_rate(value)
     if value.nil? or value == 0
-      content_tag("div", t(:not_rated), :class => 'rateit', :'data-rateit-readonly' => "true")
+      content_tag("div", Spree.t(:not_rated), :class => 'rateit', :'data-rateit-readonly' => "true")
     else
       # factor = 1 / 0.5 # 1 / desired_precision
       # rounded = (value * factor).round / factor

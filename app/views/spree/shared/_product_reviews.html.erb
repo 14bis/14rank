@@ -21,7 +21,7 @@
         <%= render :partial => 'spree/shared/review', :locals => {:review => review} %>
   <% end %>
 
-  <%= link_to t('rate_this_product'), new_product_review_path(@product), :class => "button",
+  <%= link_to Spree.t('rate_this_product'), new_product_review_path(@product), :class => "button",
     :rel => "nofollow,noindex" %>
 
 </div>
